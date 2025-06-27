@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wanna go on a date?</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #ff5cad, #ff2c75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 1rem;
+      text-align: center;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .card, .celebration {
+      background: rgba(255, 255, 255, 0.25);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+      backdrop-filter: blur(12px);
+      width: 100%;
+      max-width: 500px;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 2px 2px 8px rgba(255, 105, 180, 0.6);
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin: 1rem 0;
+    }
+
+    img {
+      width: 100%;
+      border-radius: 12px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .btn {
+      padding: 1rem 1.5rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      color: white;
+    }
+
+    .yes-btn {
+      background: #ff1493;
+    }
+
+    .yes-btn:hover {
+      background: #ff0080;
+    }
+
+    .no-btn {
+      background: #222;
+      position: relative;
+    }
+
+    .no-btn:hover {
+      background: #000;
+    }
+
+    .celebration {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .celebration img {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+
+    .celebration h2 {
+      font-size: 2rem;
+      margin-top: 1rem;
+      color: #fff;
+      text-shadow: 2px 2px 10px rgba(255, 20, 147, 0.8);
+    }
+
+    .celebration p, .celebration b {
+      font-size: 1.1rem;
+      color: #fff;
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card" id="card">
+      <h1>🌸 CONGRATULATIONS! 🌸</h1>
+      <p>Since your exams went well, would you <br>like to go on a date with me this<br><strong>June 29, 2025</strong>?</p>
+      <p>Lez watch <strong>KPOP Demon Hunters</strong> hehehehe</p>
+      <img src="https://wallpapercave.com/wp/wp15515592.jpg" alt="KPOP Demon Hunters Poster" />
+    </div>
+
+    <div class="buttons" id="buttonContainer">
+      <button class="btn yes-btn" id="yesBtn" onclick="showCelebration()"><b>Yes! Of course my love! 💖🌸</b></button>
+      <button class="btn no-btn" id="noBtn" onclick="teleportNo()"><b>Hell nah you ugly ass nigga 💀💀💀</b></button>
+    </div>
+
+    <div class="celebration" id="celebration">
+      <img src="https://i1.wp.com/justmaths.co.uk/wp-content/uploads/2016/10/celebration-gif.gif?fit=500%2C226&ssl=1" alt="Celebration" />
+      <h2>HELL YEAH BOIS!🍾🎆</h2>
+      <p>Yay! See you this Sunday (June 29, 2025)<br>my love! 💖</p>
+      <b>I LOOOOOOOOOOVVVEEE YOOUU SOO MUCH!💖</b>
+    </div>
+  </div>
+
+  <script>
+    let clickCount = 0;
+    const noBtn = document.getElementById('noBtn');
+    const yesBtn = document.getElementById('yesBtn');
+
+    function teleportNo() {
+      clickCount++;
+      
+      const yesScale = 1 + clickCount * 0.1;
+      yesBtn.style.transform = `scale(${yesScale})`;
+
+      const noScale = Math.max(1 - clickCount * 0.05, 0.1);
+      noBtn.style.transform = `scale(${noScale})`;
+
+      if (clickCount === 1) {
+        noBtn.style.position = 'fixed';
+      }
+
+      const maxX = window.innerWidth - noBtn.offsetWidth;
+      const maxY = window.innerHeight - noBtn.offsetHeight;
+
+      const randomX = Math.random() * maxX;
+      const randomY = Math.random() * maxY;
+
+      noBtn.style.left = `${randomX}px`;
+      noBtn.style.top = `${randomY}px`;
+
+      if (clickCount >= 20) {
+        noBtn.style.display = 'none';
+      }
+    }
+
+    function showCelebration() {
+      document.getElementById('card').style.display = 'none';
+      document.getElementById('celebration').style.display = 'flex';
+      document.getElementById('buttonContainer').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
